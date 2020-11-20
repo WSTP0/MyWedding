@@ -1,8 +1,8 @@
-package com.example.demo.controller;
+package com.tp.wedding.controller;
 
-import com.example.demo.common.JsonResult;
-import com.example.demo.dto.ClothingDto;
-import com.example.demo.service.ClothingService;
+import com.tp.wedding.common.JsonResult;
+import com.tp.wedding.dto.ClothingDto;
+import com.tp.wedding.service.ClothingService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

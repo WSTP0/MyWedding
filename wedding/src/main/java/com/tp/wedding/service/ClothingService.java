@@ -1,11 +1,11 @@
-package com.example.demo.service;
+package com.tp.wedding.service;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
-import com.example.demo.common.JsonResult;
-import com.example.demo.dao.ClothingDao;
-import com.example.demo.dto.ClothingDto;
-import com.example.demo.entity.Clothing;
+import com.tp.wedding.common.JsonResult;
+import com.tp.wedding.dao.ClothingDao;
+import com.tp.wedding.dto.ClothingDto;
+import com.tp.wedding.entity.Clothing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

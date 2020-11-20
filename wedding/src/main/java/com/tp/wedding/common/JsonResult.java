@@ -1,4 +1,4 @@
-package com.example.demo.common;
+package com.tp.wedding.common;
 
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.JsonNode;

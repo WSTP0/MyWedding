@@ -1,6 +1,6 @@
-package com.example.demo.dao;
+package com.tp.wedding.dao;
 
-import com.example.demo.entity.Clothing;
+import com.tp.wedding.entity.Clothing;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

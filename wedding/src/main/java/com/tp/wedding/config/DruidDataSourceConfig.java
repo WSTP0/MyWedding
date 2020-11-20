@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.tp.wedding.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.slf4j.Logger;
