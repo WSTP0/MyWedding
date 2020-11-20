@@ -7,6 +7,7 @@ import com.tp.wedding.dao.ClothingDao;
 import com.tp.wedding.dto.ClothingDto;
 import com.tp.wedding.entity.Clothing;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -44,12 +45,12 @@ public class ClothingService {
     public JsonResult findListByStatus(String status,Integer pageIndex, Integer pageSize){
         try{
             Pageable pageable = new PageRequest(pageIndex-1,pageSize);
-            clothingDao.findListByStatus(status,pageable);
+            Page<Clothing> page =  clothingDao.findListByStatus(status,pageable);
+            return JsonResult.ok(page);
         }catch (Exception e){
             e.printStackTrace();
             return JsonResult.build(JsonResult.STATUS_SERVER_EXCEPTION,"删除失败");
         }
-        return JsonResult.ok();
     }
 
     public JsonResult findOne(String clothingId){
