@@ -15,9 +15,14 @@ public class ClothingController {
     @Autowired
     private ClothingService clothingService;
 
-    @RequestMapping("/update")
+    @RequestMapping("/add")
     public JsonResult add(ClothingDto clothingDto){
-        return clothingService.save(clothingDto);
+        return clothingService.add(clothingDto);
+    }
+
+    @RequestMapping("/update")
+    public JsonResult update(ClothingDto clothingDto){
+        return clothingService.update(clothingDto);
     }
 
     @RequestMapping("/delete")
@@ -36,6 +41,18 @@ public class ClothingController {
             return JsonResult.build(JsonResult.STATUS_SERVER_EXCEPTION,"参数异常");
         }
         return clothingService.findOne(clothingId);
+    }
+
+    /**
+     * 下架
+     * @return
+     */
+    @RequestMapping("/undercarriage")
+    public JsonResult undercarriage(String clothingId){
+        if(StringUtils.isBlank(clothingId)){
+            return JsonResult.build(JsonResult.STATUS_SERVER_EXCEPTION,"参数异常");
+        }
+        return clothingService.undercarriage(clothingId);
     }
 
 }

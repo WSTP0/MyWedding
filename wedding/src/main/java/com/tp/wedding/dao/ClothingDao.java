@@ -13,10 +13,11 @@ public interface ClothingDao extends JpaRepository<Clothing, Long>, JpaSpecifica
     Clothing queryByClothingId(String clothingId);
 
     @Modifying
+    @Query(value="update clothing set is_delete = 1 where clothing_id = ?1",nativeQuery = true)
     void deleteByClothingId(String clothingId);
 
-    @Query(value = "SELECT * FROM clothing WHERE status = ?1 ",
-            countQuery = "SELECT count(*) FROM clothing WHERE status = ?1",
+    @Query(value = "SELECT * FROM clothing WHERE status = ?1 and is_delete=0 \n#pageable\n",
+            countQuery = "SELECT count(*) FROM clothing WHERE status = ?1 and is_delete=0",
             nativeQuery = true)
     Page<Clothing> findListByStatus(String status,Pageable pageable);
 

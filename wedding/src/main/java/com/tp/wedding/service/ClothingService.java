@@ -13,33 +13,52 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 @Service
 public class ClothingService {
 
     @Autowired
     private ClothingDao clothingDao;
 
-    public JsonResult save(ClothingDto clothingDto){
+    public JsonResult add(ClothingDto clothingDto){
         try{
             Clothing clothing = new Clothing();
             BeanUtil.copyProperties(clothingDto, clothing, CopyOptions.create().setIgnoreNullValue(true).setIgnoreError(true));
+            clothing.setCreateTime(new Date());
+            clothing.setUpdateTime(new Date());
             clothingDao.save(clothing);
             return JsonResult.ok(clothing);
         }catch (Exception e){
             e.printStackTrace();
-            return JsonResult.build(JsonResult.STATUS_SERVER_EXCEPTION,"保存失败");
+            return JsonResult.build(JsonResult.STATUS_SERVER_EXCEPTION,"系统异常");
+        }
+    }
+
+    public JsonResult update(ClothingDto clothingDto){
+        try{
+            Clothing clothing = new Clothing();
+            BeanUtil.copyProperties(clothingDto, clothing, CopyOptions.create().setIgnoreNullValue(true).setIgnoreError(true));
+            clothing.setUpdateTime(new Date());
+            clothingDao.save(clothing);
+            return JsonResult.ok(clothing);
+        }catch (Exception e){
+            e.printStackTrace();
+            return JsonResult.build(JsonResult.STATUS_SERVER_EXCEPTION,"系统异常");
         }
     }
 
     @Transactional
     public JsonResult delete(String clothingId){
         try{
-            clothingDao.deleteByClothingId(clothingId);
+            Clothing clothing = clothingDao.queryByClothingId(clothingId);
+            clothing.setIsDelete(1);
+            clothing.setUpdateTime(new Date());
+            return JsonResult.ok(clothingDao.save(clothing));
         }catch (Exception e){
             e.printStackTrace();
-            return JsonResult.build(JsonResult.STATUS_SERVER_EXCEPTION,"删除失败");
+            return JsonResult.build(JsonResult.STATUS_SERVER_EXCEPTION,"系统异常");
         }
-        return JsonResult.ok();
     }
 
     public JsonResult findListByStatus(String status,Integer pageIndex, Integer pageSize){
@@ -49,7 +68,7 @@ public class ClothingService {
             return JsonResult.ok(page);
         }catch (Exception e){
             e.printStackTrace();
-            return JsonResult.build(JsonResult.STATUS_SERVER_EXCEPTION,"删除失败");
+            return JsonResult.build(JsonResult.STATUS_SERVER_EXCEPTION,"系统异常");
         }
     }
 
@@ -58,7 +77,25 @@ public class ClothingService {
             return JsonResult.ok(clothingDao.queryByClothingId(clothingId));
         }catch (Exception e){
             e.printStackTrace();
-            return JsonResult.build(JsonResult.STATUS_SERVER_EXCEPTION,"删除失败");
+            return JsonResult.build(JsonResult.STATUS_SERVER_EXCEPTION,"系统异常");
+        }
+    }
+
+    /**
+     * 下架
+     * @param clothingId
+     * @return
+     */
+    @Transactional
+    public JsonResult undercarriage(String clothingId){
+        try{
+            Clothing clothing = clothingDao.queryByClothingId(clothingId);
+            clothing.setIsDelete(1);
+            clothing.setUpdateTime(new Date());
+            return JsonResult.ok(clothingDao.save(clothing));
+        }catch (Exception e){
+            e.printStackTrace();
+            return JsonResult.build(JsonResult.STATUS_SERVER_EXCEPTION,"系统异常");
         }
     }
 

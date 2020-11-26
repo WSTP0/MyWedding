@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="MyWedding">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/wedding/.mvn/wrapper" />
+      <root url="file://$PROJECT_DIR$/wedding/src/main/java" />
+      <root url="file://$PROJECT_DIR$/wedding/src/test/java" />
+    </SOURCES>
+  </library>
+</component>
