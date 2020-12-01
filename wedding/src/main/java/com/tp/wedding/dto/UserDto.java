@@ -1,15 +1,9 @@
-package com.tp.wedding.entity;
+package com.tp.wedding.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.util.Date;
 
-@Entity
-public class User {
+public class UserDto {
 
-    @Id
-    @GeneratedValue
     private int id;
     private String userId;
     private String userName;
@@ -45,20 +39,20 @@ public class User {
         this.userName = userName;
     }
 
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public Long getMobile() {

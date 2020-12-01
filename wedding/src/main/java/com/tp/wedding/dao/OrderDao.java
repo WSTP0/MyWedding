@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface OrderDao extends JpaRepository<Order, Long>, JpaSpecificationExecutor<Order> {
 
-
+    @Query(value="select * from order where order_id=?1 and is_delete = 0",nativeQuery = true)
     Order queryByOrderId(String orderId);
 
     @Modifying

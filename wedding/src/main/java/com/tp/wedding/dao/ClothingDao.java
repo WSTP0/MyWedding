@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ClothingDao extends JpaRepository<Clothing, Long>, JpaSpecificationExecutor<Clothing> {
 
+    @Query(value="select * from clothing where clothing_id=?1 and is_delete = 0",nativeQuery = true)
     Clothing queryByClothingId(String clothingId);
 
     @Modifying

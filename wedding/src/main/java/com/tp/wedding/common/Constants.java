@@ -6,4 +6,6 @@ public class Constants {
 
     public static String TOKEN_KEY = "tokenKey";
 
+    public static String INIT_PASSWORD = "123456";
+
 }
