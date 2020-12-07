@@ -53,6 +53,19 @@ public class RedisService {
         return result;
     }
 
+    public boolean set(final String key, Object value, Long expireTime,TimeUnit unit) {
+        boolean result = false;
+        try {
+            ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
+            operations.set(key, value);
+            redisTemplate.expire(key, expireTime, unit);
+            result = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     /**
      * 读取缓存
      *

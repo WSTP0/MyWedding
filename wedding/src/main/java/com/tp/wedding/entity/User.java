@@ -15,6 +15,7 @@ public class User {
     private String userName;
     private String password;
     private String nickName;
+    private Integer roleIndex;
     private Long mobile;
     private Integer sex;
     private Integer isDelete;//是否删除，0正常，1删除
@@ -99,5 +100,13 @@ public class User {
 
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public Integer getRoleIndex() {
+        return roleIndex;
+    }
+
+    public void setRoleIndex(Integer roleIndex) {
+        this.roleIndex = roleIndex;
     }
 }

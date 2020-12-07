@@ -1,14 +1,17 @@
 package com.tp.wedding.controller;
 
 import com.tp.wedding.common.JsonResult;
-import com.tp.wedding.dto.ClothingDto;
+import com.tp.wedding.common.Role;
+import com.tp.wedding.config.AdminValidate;
 import com.tp.wedding.dto.UserDto;
-import com.tp.wedding.service.ClothingService;
+import com.tp.wedding.service.ManagerService;
 import com.tp.wedding.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/user")
@@ -28,13 +31,12 @@ public class UserController {
     }
 
     /**
-     * 重置密码
-     * @param userName
+     * 登录
      * @return
      */
-    @RequestMapping("/reset")
-    public JsonResult reset(String userName){
-        return userService.reset(userName);
+    @RequestMapping("/login")
+    public JsonResult login(HttpServletRequest request){
+        return userService.login(request);
     }
 
     /**
@@ -47,6 +49,17 @@ public class UserController {
     @RequestMapping("/updatePassword")
     public JsonResult updatePassword(String userId,String oldPassword,String newPassword){
         return userService.updatePassword(userId,oldPassword,newPassword);
+    }
+
+    /**
+     * 重置密码
+     * @param userName
+     * @return
+     */
+    @AdminValidate(roles={Role.ADMIN,Role.ROOT})
+    @RequestMapping("/reset")
+    public JsonResult reset(String userName){
+        return userService.reset(userName);
     }
 
     /**
@@ -64,6 +77,7 @@ public class UserController {
      * @param userId
      * @return
      */
+    @AdminValidate(roles={Role.ROOT})
     @RequestMapping("/delete")
     public JsonResult delete(String userId){
         return userService.delete(userId);

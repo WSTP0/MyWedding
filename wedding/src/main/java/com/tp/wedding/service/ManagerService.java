@@ -2,6 +2,7 @@ package com.tp.wedding.service;
 
 import com.tp.wedding.common.Constants;
 import com.tp.wedding.common.JsonUtils;
+import com.tp.wedding.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class ManagerService {
@@ -33,6 +35,10 @@ public class ManagerService {
         return map;
     }
 
+    public void setPublicSession(HttpSession publicSession){
+        redisService.set(Constants.PUBLIC_SESSION_KEY,JsonUtils.objectToJson(publicSession),10L, TimeUnit.MINUTES);
+    }
+
     public HttpSession getPublicSession(){
         HttpSession publicSession = JsonUtils.jsonToPojo((String) redisService.get(Constants.PUBLIC_SESSION_KEY), HttpSession.class);
         return publicSession;
@@ -53,13 +59,25 @@ public class ManagerService {
         return null;
     }
 
-    public String getToken(HttpServletRequest request){
+    public String getParam(HttpServletRequest request,String key){
         Map<String, Object> map = this.getRequestParams(request);
         if(map!=null && map.size()>0){
-            Object tokenObj =  map.get("token");
+            Object tokenObj =  map.get(key);
             if(tokenObj!=null){
                 return (String)tokenObj;
             }
+        }
+        return null;
+    }
+
+    public User getByToken(String token){
+        return JsonUtils.jsonToPojo((String) redisService.get(token), User.class);
+    }
+
+    public String getUserIdByToken(String token){
+        User user = getByToken(token);
+        if(user != null){
+            return user.getUserId();
         }
         return null;
     }

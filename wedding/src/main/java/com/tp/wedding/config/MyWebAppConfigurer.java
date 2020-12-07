@@ -10,10 +10,13 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
 
     @Autowired
     private LoginInterceptor loginInterceptor;
+    @Autowired
+    private AdminInterceptor adminInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor).addPathPatterns("/**");
+        registry.addInterceptor(adminInterceptor);
         super.addInterceptors(registry);
     }
 }
