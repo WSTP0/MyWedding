@@ -1,8 +1,6 @@
 package com.tp.wedding.dao;
 
-import com.tp.wedding.entity.Clothing;
 import com.tp.wedding.entity.Menu;
-import com.tp.wedding.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;

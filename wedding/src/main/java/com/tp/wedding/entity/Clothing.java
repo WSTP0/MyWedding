@@ -11,8 +11,8 @@ public class Clothing {
 
     @Id
     @GeneratedValue
-    private int id;
-    private String clothingId;//编号
+    private Long id;
+    private String clothingCode;//编号
     private String clothingName;//名称
     private String category;//品类
     private String style;//款式
@@ -24,10 +24,9 @@ public class Clothing {
     private BigDecimal lendPrice;//出租价
     private BigDecimal buyPrice;//进货价
     private BigDecimal retailPrice;//零售价
-    private String lendCount;//出租次数
-    private Date lastLendDate;//上一次出租的时间（开始）
+    private Integer lendCount;//出租次数
     private String lastLendOrderId;//上一次出租的订单号
-    private String status;//状态，0正常，1出租中
+    private Integer status;//状态，0正常，1出租中
     private Integer isDelete;//是否删除，0正常，1删除
     private Date buyDate;//购买日期
     private Date createTime;//创建时间
@@ -42,20 +41,20 @@ public class Clothing {
         this.isDelete = isDelete;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getClothingId() {
-        return clothingId;
+    public String getClothingCode() {
+        return clothingCode;
     }
 
-    public void setClothingId(String clothingId) {
-        this.clothingId = clothingId;
+    public void setClothingCode(String clothingCode) {
+        this.clothingCode = clothingCode;
     }
 
     public String getClothingName() {
@@ -106,11 +105,11 @@ public class Clothing {
         this.color = color;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -138,20 +137,12 @@ public class Clothing {
         this.updateTime = updateTime;
     }
 
-    public String getLendCount() {
+    public Integer getLendCount() {
         return lendCount;
     }
 
-    public void setLendCount(String lendCount) {
+    public void setLendCount(Integer lendCount) {
         this.lendCount = lendCount;
-    }
-
-    public Date getLastLendDate() {
-        return lastLendDate;
-    }
-
-    public void setLastLendDate(Date lastLendDate) {
-        this.lastLendDate = lastLendDate;
     }
 
     public String getLastLendOrderId() {

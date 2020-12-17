@@ -6,7 +6,7 @@ import java.util.Date;
 public class ClothingDto {
 
     private int id;
-    private String clothingId;//编号
+    private String clothingCode;//编号
     private String clothingName;//名称
     private String category;//品类
     private String style;//款式
@@ -35,12 +35,12 @@ public class ClothingDto {
         this.id = id;
     }
 
-    public String getClothingId() {
-        return clothingId;
+    public String getClothingCode() {
+        return clothingCode;
     }
 
-    public void setClothingId(String clothingId) {
-        this.clothingId = clothingId;
+    public void setClothingCode(String clothingCode) {
+        this.clothingCode = clothingCode;
     }
 
     public String getClothingName() {

@@ -1,6 +1,5 @@
 package com.tp.wedding.dao;
 
-import com.tp.wedding.entity.Order;
 import com.tp.wedding.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

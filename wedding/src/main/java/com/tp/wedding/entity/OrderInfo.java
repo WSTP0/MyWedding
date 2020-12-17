@@ -3,28 +3,31 @@ package com.tp.wedding.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-public class Order {
+public class OrderInfo {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     private String orderId;
     private String renterName;//租借人的名字
     private String renterPhone;//租借人的手机号
     private BigDecimal lendPrice;//租金
     private BigDecimal deposit;//定金
     private BigDecimal balance;//尾款+押金
+    private String packageIds;//使用的套餐
+    private String clothingIds;//套餐外的衣服
     private String source;//渠道（客源）
-    private String useAddress;//使用的场所
+    private String useAddress;//使用的地址
     private Date useStartTime;//使用开始日期
     private Date useEndTime;//使用结束日期
     private String remark;//备注
     private Integer isDelete;//是否删除，0正常，1删除
-    private String status;//0未付款，1已付定金，2已付尾款押金（全部），3已发货，4已归还，5已完成，6已取消
+    private Integer status;//0未付款，1已付定金，2已付尾款押金（全部），3已发货，4已归还，5已完成，6已取消
     private Date orderTime;//下单时间
     private Date payDepositTime;//定金付款时间
     private Date payBalanceTime;//尾款押金付款时间
@@ -36,11 +39,27 @@ public class Order {
     private Date createTime;//创建时间
     private Date updateTime;//更新时间
 
-    public int getId() {
+    public String getPackageIds() {
+        return packageIds;
+    }
+
+    public void setPackageIds(String packageIds) {
+        this.packageIds = packageIds;
+    }
+
+    public String getClothingIds() {
+        return clothingIds;
+    }
+
+    public void setClothingIds(String clothingIds) {
+        this.clothingIds = clothingIds;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -140,11 +159,11 @@ public class Order {
         this.isDelete = isDelete;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
